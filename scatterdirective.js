@@ -20,7 +20,7 @@ angular.module('readinessZone1', [])
             .attr("class", "d3-tip")
             .offset([-10, 0])
             .html(function(d) {
-              return  d.Major + "<br>" + Math.round(d.Interest*10000)/10000 + ", " + Math.round(d.Academic*10000)/10000;
+              return  d.Subject + "<br>" + Math.round(d.Marks1*10000)/10000 + ", " + Math.round(d.Marks2*10000)/10000;
             });
 
         var zoomBeh = d3.behavior.zoom()
