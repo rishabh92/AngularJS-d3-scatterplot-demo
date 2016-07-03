@@ -1,4 +1,4 @@
-var app = angular.module('d3App', [])
+var app = angular.module('d3App', ['scatterchart'])
 	app.controller('d3Controller', ['$scope', '$timeout', function($scope, $timeout) {
 		$scope.showData = {
             value1: '5', value2 : '10', value3: '22',

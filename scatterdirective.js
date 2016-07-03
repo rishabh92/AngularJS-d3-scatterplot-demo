@@ -1,4 +1,4 @@
-angular.module('readinessZone1', [])
+angular.module('scatterchart', [])
 .directive("scatterChart",function(){  
     return {
       restrict:'E',
@@ -80,7 +80,7 @@ angular.module('readinessZone1', [])
             .attr("x", width)
             .attr("y", -6)
             .attr("text-anchor", "end")
-            .text("Interest Fit")  
+            .text("Marks1")  
           
           // y-axis
           svg.append("g")
@@ -92,7 +92,7 @@ angular.module('readinessZone1', [])
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text("Academic Fit")       
+              .text("Marks2")       
 
                
           var objects = svg.append("svg")
@@ -106,7 +106,7 @@ angular.module('readinessZone1', [])
               .data(data)
               .enter().append("circle")
               .attr("class", "dot")
-              .attr("cx", function (d) { return d.Marks1; } })
+              .attr("cx", function (d) { return d.Marks1; })
                .attr("cy", function (d) { return d.Marks2; })
               .attr("r", 5)
               .attr("transform", transform)
