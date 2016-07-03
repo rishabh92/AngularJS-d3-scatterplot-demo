@@ -1,3 +1,5 @@
+(function(angular) {
+  'use strict';
 angular.module('scatterchart', [])
 .directive("scatterChart",function(){  
     return {
@@ -133,3 +135,4 @@ angular.module('scatterchart', [])
     }
 
   });
+})(window.angular);
