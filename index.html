@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="d3App">
 <head>
 <title>Sample Angular D3 App</title>
 <link rel="stylesheet" href="app.css">
@@ -8,7 +8,8 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="bower_components/d3-tip/index.js" charset="utf-8"></script>
 <script src= "controller.js"></script>
 <script src= "scatterdirective.js"></script>
 <style>
@@ -17,9 +18,59 @@ svg {
   font: 10px sans-serif;
   shape-rendering: crispEdges;
 }
+rect2 {
+  fill: transparent;
+  shape-rendering: crispEdges;
+}
+
+rect {
+  fill: #ddd;
+}
+
+rect.zoom {
+  stroke: steelblue;
+  fill-opacity: 0.5;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #fff;
+}
+.axis text {
+  font-size: 15px;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
 </style>
 </head>
-<body data-ng-app="d3App">
+<body data-ng-controller="d3Controller as controller">
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -27,7 +78,7 @@ svg {
 	    </div>
 	  </div>
 	</nav>
-<div class="container-fluid" data-ng-controller="d3Controller as controller">
+<div class="container-fluid" >
 	<div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-5 value-inputs">
@@ -96,8 +147,12 @@ svg {
       </div>
     </div>
 
-    
-               <scatter-chart data="data"></scatter-chart> 
+	
+
+      <div ng-if= "retrnflag()" >
+           <scatter-chart data="data"></scatter-chart> 
+      </div>  
+        
 
 </div>    
 </body>	
