@@ -17,6 +17,8 @@ angular.module('scatterchart', [])
         var rectangle,rectangle1,label1, label2, label0, labely0, labely1, labely2;
         var xScale = d3.scale.linear().range([0, width]);
         var yScale = d3.scale.linear().range([height, 0]);
+                    xScale.domain([0, 100]);
+                    yScale.domain([0, 100]);
             
       
         // tooltip    
@@ -44,7 +46,6 @@ angular.module('scatterchart', [])
        
         svg.call(tip);
         scope.$watch('data', function(newVals, oldVals) {
-
           scope.render(newVals);   
         }, true);
 
@@ -111,8 +112,8 @@ angular.module('scatterchart', [])
               .data(data)
               .enter().append("circle")
               .attr("class", "dot")
-              .attr("cx", function (d) { return d.Marks1; })
-               .attr("cy", function (d) { return d.Marks2; })
+            //  .attr("cx", function (d) { console.log(d.MArks1)return d.Marks1; })
+            //  .attr("cy", function (d) { return d.Marks2; })
               .attr("r", 5)
               .attr("transform", transform)
               .style("fill", function(d) { return color(cValue(d));}) 
@@ -122,17 +123,18 @@ angular.module('scatterchart', [])
           }
           // zoom function
           function zoom() {
-           
+           console.log("here3")
             svg.select(".x.axis").call(xAxis);
             svg.select(".y.axis").call(yAxis);
             svg.selectAll(".dot")
-              .attr("transform", transform); 
+                .attr("transform", transform); 
+           
                 
           }
           
           // transale the dots when zoom      
           function transform(d) {
-              return "translate(" + xScale(d["Marks1"]) + "," + yScale(d["Marks2"]) + ")";
+              return "translate(" + xScale(d.Marks1) + "," + yScale(d.Marks2) + ")";
           }
 
         }
